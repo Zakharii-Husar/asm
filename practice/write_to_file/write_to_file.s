@@ -30,26 +30,26 @@ msg_len = . - message               # Length of the message
 
 _start:
 
-        # Write the prompt "Enter input: " to stdout
-    movq $SYS_write, %rax
-    movq $SYS_write, %rdi
-    movq $prompt_msg, %rsi          # address of the message to write
-    movq prompt_length, %rdx           # number of bytes to write (length of the message)
-    syscall
+    # ----------------------------
+    # 1. Write the prompt
+    # ----------------------------
 
-            # Read user input into buffer
+    .include "./write_to_file/prompt.s"
+
+    # ----------------------------
+    # 2. Read user input & save it to the buffer
+    # ----------------------------
+
     movq $0, %rax            # syscall: sys_read (0)
     movq $0, %rdi            # file descriptor: stdin (0)
     movq $buffer, %rsi       # address of the buffer to store the input
     movq $100, %rdx          # number of bytes to read (max 100 bytes)
     syscall
-
-       # Save input lenght to a register
-       movq %rax, %r12
+    movq %rax, %r12          # Save input lenght to a register
 
 
     # ----------------------------
-    # 1. Open the File
+    # 3. Open the File
     # ----------------------------
 
     mov $SYS_open, %rax               # Syscall number for open
@@ -64,7 +64,7 @@ _start:
     mov %rax, %rdi                     # Save file descriptor in %rdi for later use
 
     # ----------------------------
-    # 2. Write to the File
+    # 4. Write to the File
     # ----------------------------
 
     mov $SYS_write, %rax               # Syscall number for write
@@ -74,7 +74,7 @@ _start:
     syscall                            # Invoke syscall
 
     # ----------------------------
-    # 3. Close the File
+    # 5. Close the File
     # ----------------------------
 
     mov $SYS_close, %rax               # Syscall number for close
@@ -82,7 +82,7 @@ _start:
     syscall                            # Invoke syscall
 
     # ----------------------------
-    # 4. Exit the Program
+    # 6. Exit the Program
     # ----------------------------
 
 exit_program:

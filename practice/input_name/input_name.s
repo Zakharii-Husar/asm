@@ -1,3 +1,4 @@
+
 .section .data
 buffer: .space 100         # Reserve 100 bytes for input buffer
 prompt_msg:    .asciz "Enter input: "
