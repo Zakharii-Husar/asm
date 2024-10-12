@@ -1,25 +1,4 @@
 
-
-
-
-[A
 test
-TEST
-[A
-
-[A
-
-[A
-
-[A
-[A
-
-ssda
-ws
-
-[A
-test
-
-sd
-sd
-a
+test_input
+inp
