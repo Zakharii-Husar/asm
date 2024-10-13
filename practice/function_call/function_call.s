@@ -1,19 +1,19 @@
-#FUNCTION CALL PHASES:
-#1) Caller's Context: place arguments in registers;
+# FUNCTION CALL PHASES:
+# 1) Caller's Context: place arguments in registers;
 
-#2) The Call Instruction(call my_function): 
+# 2) The Call Instruction(call my_function): 
 #    -pushes the return address onto the stack  
 #    -jumps to the address of the function being called)
 
-#3) Function Prologue (Entering the Function):
+# 3) Function Prologue (Entering the Function):
 #    -Saving the caller's frame by pushing the old base pointer (%rbp) onto the stack.
 #    -Setting up a new base pointer (%rbp) for the current function's stack frame.
 
-#4) Function Body (doing the work):
+# 4) Function Body (doing the work):
 #    -The function uses the parameters from the registers.
 #    -If local variables are needed, the function allocates space on the stack by decrementing %rsp.
 
-#5) Function Epilogue (Cleaning Up):
+# 5) Function Epilogue (Cleaning Up):
 #     -If you have return value place it in the rax register
 #     -Restoring the old base pointer (popq %rbp) from the stack to maintain the correct stack frame for the caller.
 #    -Using the ret instruction to pop the return address from the stack and jump back to the caller.
