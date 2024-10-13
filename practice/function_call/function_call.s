@@ -58,7 +58,7 @@ _start:
 
     #Print the prompt "Enter input: " to stdout
     movq $prompt_msg, %rsi        # 1: address of the message to write
-    movq prompt_length, %rdx      # 1: number of bytes to write (length of the message)
+   movq prompt_length(%rip), %rdx # 1: number of bytes to write (length of the message)
     call print_string             # 2
 
 # Read user input into buffer
